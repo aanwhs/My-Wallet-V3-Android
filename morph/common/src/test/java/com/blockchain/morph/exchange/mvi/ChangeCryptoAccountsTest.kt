@@ -8,7 +8,7 @@ import org.junit.Test
 class ChangeCryptoAccountsTest {
 
     @Test
-    fun `can change the "from" account`() {
+    fun `can change the base account`() {
         given(
             initial("CAD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -26,7 +26,7 @@ class ChangeCryptoAccountsTest {
     }
 
     @Test
-    fun `can change the "to" account`() {
+    fun `can change the counter account`() {
         given(
             initial("GBP", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -44,7 +44,7 @@ class ChangeCryptoAccountsTest {
     }
 
     @Test
-    fun `if the "from" currency matches the "to", they swap`() {
+    fun `if the base currency matches the base, they swap`() {
         given(
             initial(
                 "GBP",
@@ -66,7 +66,7 @@ class ChangeCryptoAccountsTest {
     }
 
     @Test
-    fun `if the "to" currency matches the "from", they swap`() {
+    fun `if the counter currency matches the base, they swap`() {
         given(
             initial(
                 "GBP",

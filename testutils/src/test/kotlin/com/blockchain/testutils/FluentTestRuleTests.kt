@@ -14,7 +14,7 @@ class FluentTestRuleTests {
     }
 
     @Test
-    fun `"before" block is run`() {
+    fun `before block is run`() {
         var x = 0
         val rule = before { x = 1 }.after { }
         rule.runRule()
@@ -23,7 +23,7 @@ class FluentTestRuleTests {
     }
 
     @Test
-    fun `"after" block is run`() {
+    fun `after block is run`() {
         var x = 0
         val rule = before {}.after { x = 2 }
         rule.runRule()
@@ -32,7 +32,7 @@ class FluentTestRuleTests {
     }
 
     @Test
-    fun `"after" block is run later than "before"`() {
+    fun `after block is run later than before`() {
         var x = 0
         val rule = before { x = 10 }.after { x = 20 }
         rule.runRule()
@@ -41,7 +41,7 @@ class FluentTestRuleTests {
     }
 
     @Test
-    fun `statement block is run after "before" block`() {
+    fun `statement block is run after before block`() {
         var x = 0
         val rule = before { x = 10 }.after { }
         rule.runRule { x = 11 }

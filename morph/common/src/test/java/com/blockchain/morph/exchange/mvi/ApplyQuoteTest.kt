@@ -15,7 +15,7 @@ import org.junit.Test
 class ApplyQuoteTest {
 
     @Test
-    fun `"from crypto" entered`() {
+    fun `base crypto entered`() {
         given(
             initial("CAD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -44,7 +44,7 @@ class ApplyQuoteTest {
     }
 
     @Test
-    fun `"to crypto" entered`() {
+    fun `counter crypto entered`() {
         given(
             initial("CAD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -73,7 +73,7 @@ class ApplyQuoteTest {
     }
 
     @Test
-    fun `"from fiat" entered`() {
+    fun `base fiat entered`() {
         given(
             initial("CAD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -102,7 +102,7 @@ class ApplyQuoteTest {
     }
 
     @Test
-    fun `"to fiat" entered`() {
+    fun `counter fiat entered`() {
         given(
             initial("USD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -131,7 +131,7 @@ class ApplyQuoteTest {
     }
 
     @Test
-    fun `ignore mismatch quote by "from fiat" currency`() {
+    fun `ignore mismatch quote by base fiat currency`() {
         given(
             initial("USD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -165,7 +165,7 @@ class ApplyQuoteTest {
     }
 
     @Test
-    fun `ignore mismatch quote by "to fiat" currency`() {
+    fun `ignore mismatch quote by counter fiat currency`() {
         given(
             initial("USD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         ).on(
@@ -199,7 +199,7 @@ class ApplyQuoteTest {
     }
 
     @Test
-    fun `ignore mismatch quote by "from crypto" currency`() {
+    fun `ignore mismatch quote by base crypto currency`() {
         given(
             initial("USD", CryptoCurrency.BCH to CryptoCurrency.ETHER)
         ).on(
@@ -233,7 +233,7 @@ class ApplyQuoteTest {
     }
 
     @Test
-    fun `ignore mismatch quote by "to crypto" currency`() {
+    fun `ignore mismatch quote by counter crypto currency`() {
         given(
             initial("USD", CryptoCurrency.BCH to CryptoCurrency.ETHER)
         ).on(

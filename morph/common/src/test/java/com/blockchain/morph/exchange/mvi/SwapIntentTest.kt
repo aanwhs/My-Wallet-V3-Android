@@ -9,7 +9,7 @@ import org.junit.Test
 class SwapIntentTest {
 
     @Test
-    fun `can swap the "to" and "from" currencies`() {
+    fun `can swap the counter and base currencies`() {
         given(
             ExchangeViewModel(
                 fromAccount = AccountReference.Ethereum("Ether Account", "0xeth1"),

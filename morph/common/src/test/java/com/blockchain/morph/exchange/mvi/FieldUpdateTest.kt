@@ -30,7 +30,7 @@ class FieldUpdateTest {
     }
 
     @Test
-    fun `update "from crypto"`() {
+    fun `update base crypto`() {
         given(
             initial("USD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         )
@@ -55,7 +55,7 @@ class FieldUpdateTest {
     }
 
     @Test
-    fun `update "to crypto"`() {
+    fun `update counter crypto`() {
         given(
             initial("GBP", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         )
@@ -80,7 +80,7 @@ class FieldUpdateTest {
     }
 
     @Test
-    fun `update "from fiat"`() {
+    fun `update base fiat`() {
         given(
             initial("USD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         )
@@ -105,7 +105,7 @@ class FieldUpdateTest {
     }
 
     @Test
-    fun `update "to fiat"`() {
+    fun `update counter fiat`() {
         given(
             initial("CAD", CryptoCurrency.BTC to CryptoCurrency.ETHER)
         )

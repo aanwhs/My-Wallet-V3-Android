@@ -22,7 +22,7 @@ class UserInputTest {
     }
 
     @Test
-    fun `user "from crypto" input with some extra characters`() {
+    fun `user base crypto input with some extra characters`() {
         given(
             initial(
                 "GBP",
@@ -53,7 +53,7 @@ class UserInputTest {
     }
 
     @Test
-    fun `user "to crypto" input with some extra characters`() {
+    fun `user counter crypto input with some extra characters`() {
         given(
             initial(
                 "GBP",
@@ -70,7 +70,7 @@ class UserInputTest {
     }
 
     @Test
-    fun `user "from fiat" input with some extra characters`() {
+    fun `user base fiat input with some extra characters`() {
         given(
             initial(
                 "GBP",
@@ -87,7 +87,7 @@ class UserInputTest {
     }
 
     @Test
-    fun `user "to fiat" input with some extra characters`() {
+    fun `user counter fiat input with some extra characters`() {
         given(
             initial(
                 "GBP",
@@ -120,7 +120,7 @@ class UserInputWithAlternativeLocaleTest {
     }
 
     @Test
-    fun `user "from crypto" input with some extra characters`() {
+    fun `user base crypto input with some extra characters`() {
         given(
             initial("GBP", CryptoCurrency.BCH to CryptoCurrency.ETHER)
         ).on(
