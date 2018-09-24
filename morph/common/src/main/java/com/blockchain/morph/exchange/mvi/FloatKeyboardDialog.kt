@@ -3,6 +3,7 @@ package com.blockchain.morph.exchange.mvi
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.toObservable
 import java.math.BigDecimal
+import java.math.BigInteger
 
 sealed class FloatKeyboardIntent {
     class NumericKey(val key: Int) : FloatKeyboardIntent()
@@ -34,19 +35,35 @@ private fun construct(
 ): FloatEntryViewState {
     if (previous.userDecimal.compareTo(intent.value) == 0 && previous.maxDecimal == intent.maxDp) return previous
 
-    val map = intent.value.toPlainString().trimEnd('0', '.')
-        .toCharArray()
-        .map {
-            when (it) {
-                '.' -> FloatKeyboardIntent.Period()
-                else -> FloatKeyboardIntent.NumericKey(it - '0')
-            }
-        }
-    return FloatKeyboardDialog((listOf(FloatKeyboardIntent.SetMaxDp(intent.maxDp)) + map).toObservable())
+    return FloatKeyboardDialog((numberToIntents(intent)).toObservable())
         .states
         .last(initialState)
         .blockingGet()
         .copy(shake = false)
+}
+
+private fun numberToIntents(intent: FloatKeyboardIntent.SetValue): List<FloatKeyboardIntent> {
+    val withoutTrailingZeros = intent.value.stripTrailingZeros()
+    val scale = withoutTrailingZeros.scale()
+
+    var asAsInt = withoutTrailingZeros.movePointRight(scale).toBigIntegerExact()
+
+    val intents = mutableListOf<FloatKeyboardIntent>()
+
+    while (asAsInt.signum() == 1) {
+        intents.add(FloatKeyboardIntent.NumericKey(asAsInt.remainder(BigInteger.TEN).toInt()))
+        asAsInt = asAsInt.divide(BigInteger.TEN)
+    }
+
+    if (scale > 0) {
+        intents.add(scale, FloatKeyboardIntent.Period())
+    }
+
+    intents.add(FloatKeyboardIntent.SetMaxDp(intent.maxDp))
+
+    intents.reverse()
+
+    return intents
 }
 
 private fun mapPeriodPress(previous: FloatEntryViewState): FloatEntryViewState {
